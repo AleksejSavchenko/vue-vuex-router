@@ -2,6 +2,7 @@
     <div class="hello">
         <h1>{{ msg }}</h1>
         <h2>Essential Links</h2>
+        <button @click="cabinetProfile()">{{ query }}</button>
         <ul>
 
         </ul>
@@ -13,6 +14,16 @@
 
     export default {
         name: 'HelloWorld2',
+        data() {
+            return {
+                query: 'Go'
+            }
+        },
+        methods: {
+            cabinetProfile(){
+                store.dispatch('cabinetProfile', this.query)
+            }
+        },
         computed: {
             msg() {
                 return this.$store.state.count

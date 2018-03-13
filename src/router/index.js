@@ -6,6 +6,8 @@ import HelloWorld2 from '@/components/HelloWorld2'
 Vue.use(Router)
 
 export default new Router({
+    hashbang: false,
+    mode: 'history',
   routes: [
     {
       path: '/',
