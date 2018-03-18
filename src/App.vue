@@ -1,25 +1,39 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-link :to="'/'">HelloWorld</router-link>
-    <router-link :to="'/2'">HelloWorld2</router-link>
-    <router-view/>
+    <router-view name="siteNav"/>
+    <div class="wrapper">
+      <router-view name="header"/>
+      <router-view/>
+      <router-view name="footer"/>
+    </div>
   </div>
 </template>
 
+<!--
+<script type="application/javascript" src="../js/vendor/modernizr-3.5.0.min.js"></script>
+-->
+
 <script>
-export default {
-  name: 'App'
-}
+  export default {
+      name: 'App',
+      data(){
+          return {
+
+          }
+      },
+      methods: {
+
+      },
+      computed: {
+
+      }
+  }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style src="../css/style.css"></style>
+<style src="../css/font-awesome.min.css"></style>
+<style scoped>
+  #app {
+    margin-left: 63px;
+  }
 </style>
