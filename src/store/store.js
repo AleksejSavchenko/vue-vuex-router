@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import axios from 'axios'
 import qs from 'querystring'
 
@@ -12,17 +11,17 @@ const url = 'http://local.osd.ua/assets/components/users_cabinet/public.php';
 const store = new Vuex.Store({
     state: {
         count: 10,
-        catalog: ''
+        categoryList: ''
     },
     actions: {
-        cabinetCatalog ({ commit }, query_profile) {
+        categoryList ({ commit }, query_profile) {
 
             axios.post(url, qs.stringify({
                 // 'action': 'shop/products/getlist'
                 'action': 'shop/categories/getlist'
             })).then(function (response) {
-                console.log(response.data['results']);
-                commit( 'set', {type: 'catalog', items: response.data['results']} )
+                console.log(response.data);
+                commit( 'set', {type: 'categoryList', items: response.data} )
             })
             .catch(function (error) {
                 console.log(error);
@@ -44,10 +43,14 @@ const store = new Vuex.Store({
         }
     },
     getters: {
-        catalog(state) {
-            return state.catalog.map(item => {
-                return item
-            })
+        categoryList(state) {
+            return state.categoryList['results']
+            // return state.categoryList.map(item => {
+            //     return item
+            // })
+        },
+        count(state) {
+            return state.count
         }
     }
 });
