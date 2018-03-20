@@ -11,13 +11,12 @@ const url = 'http://local.osd.ua/assets/components/users_cabinet/public.php';
 const store = new Vuex.Store({
     state: {
         count: 10,
-        categoryList: ''
+        categoryList: '',
+        productsList: '',
     },
     actions: {
         categoryList ({ commit }, query_profile) {
-
             axios.post(url, qs.stringify({
-                // 'action': 'shop/products/getlist'
                 'action': 'shop/categories/getlist'
             })).then(function (response) {
                 console.log(response.data);
@@ -26,6 +25,21 @@ const store = new Vuex.Store({
             .catch(function (error) {
                 console.log(error);
             });
+        },
+        productsList ({ commit }, params) {
+            axios.post(url, qs.stringify({
+                'action': 'shop/products/getlist',
+                'subcategoryId': params['subcategoryId'],
+                'in_stock': '0',
+                'search_name': ''
+
+            })).then(function (response) {
+                console.log(response.data);
+                commit( 'set', {type: 'productsList', items: response.data} )
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         cabinetAuth ({ commit }, query_auth) {
 
@@ -48,6 +62,9 @@ const store = new Vuex.Store({
             // return state.categoryList.map(item => {
             //     return item
             // })
+        },
+        productsList(state) {
+            return state.productsList['results']
         },
         count(state) {
             return state.count

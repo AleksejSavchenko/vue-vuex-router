@@ -16,9 +16,6 @@ export default {
   name: 'Category',
   components: {'category': Category},
   props: ["categoryList"],
-    beforeCreate() {
-
-    },
     data () {
       return {
           expanding: 'none',

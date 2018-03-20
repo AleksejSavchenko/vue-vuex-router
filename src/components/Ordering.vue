@@ -111,7 +111,7 @@
                 return this.expanding === 'none' ? this.expanding = 'block' : this.expanding = 'none';
             },
             cabinetAuth(){
-                store.dispatch('cabinetAuth', this.query)
+                this.$store.dispatch('cabinetAuth', this.query)
             }
         },
         computed: {
